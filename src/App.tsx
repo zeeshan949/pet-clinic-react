@@ -22,6 +22,14 @@ import {
   OffLayoutArea,
 } from "components/layout";
 import authProvider from "./authProvider";
+import { TypeCreate, TypeEdit, TypeList, TypeShow } from "pages/types";
+import { SpecialtyCreate, SpecialtyEdit, SpecialtyList, SpecialtyShow } from "pages/specialties";
+import { VetCreate, VetEdit, VetList, VetShow } from "pages/vets";
+import { OwnerCreate, OwnerEdit, OwnerList, OwnerShow } from "pages/owners";
+import { VetSpecialtyCreate, VetSpecialtyEdit, VetSpecialtyList, VetSpecialtyShow } from "pages/vet_specialties";
+import { VisitCreate, VisitEdit, VisitList, VisitShow } from "pages/visits";
+import { PetCreate, PetEdit, PetList, PetShow } from "pages/pets";
+import DashboardPage from "pages/dashboard";
 
 function App() {
   return (
@@ -49,18 +57,6 @@ function App() {
       LoginPage={() => (
         <AuthPage
           type="login"
-          providers={[
-            {
-              name: "google",
-              label: "Sign in with Google",
-            },
-          ]}
-          formProps={{
-            initialValues: {
-              email: "info@refine.dev",
-              password: "refine-supabase",
-            },
-          }}
         />
       )}
       notificationProvider={notificationProvider}
@@ -68,11 +64,59 @@ function App() {
       catchAll={<ErrorComponent />}
       resources={[
         {
-          name: "posts",
-          list: AntdInferencer,
-          edit: AntdInferencer,
-          show: AntdInferencer,
-          create: AntdInferencer,
+            name: "types",
+            list: TypeList,
+            show: TypeShow,
+            create: TypeCreate,
+            edit: TypeEdit,
+            canDelete: true,
+        },
+        {
+          name: "specialties",
+          list: SpecialtyList,
+          show: SpecialtyShow,
+          create: SpecialtyCreate,
+          edit: SpecialtyEdit,
+          canDelete: true,
+        },
+        {
+          name: "vets",
+          list: VetList,
+          show: VetShow,
+          create: VetCreate,
+          edit: VetEdit,
+          canDelete: true,
+        },
+        {
+          name: "owners",
+          list: OwnerList,
+          show: OwnerShow,
+          create: OwnerCreate,
+          edit: OwnerEdit,
+          canDelete: true,
+        },
+        {
+          name: "vet_specialties",
+          list: VetSpecialtyList,
+          show: VetSpecialtyShow,
+          create: VetSpecialtyCreate,
+          edit: VetSpecialtyEdit,
+          canDelete: true,
+        },
+        {
+          name: "visits",
+          list: VisitList,
+          show: VisitShow,
+          create: VisitCreate,
+          edit: VisitEdit,
+          canDelete: true,
+        },
+        {
+          name: "pets",
+          list: PetList,
+          show: PetShow,
+          create: PetCreate,
+          edit: PetEdit,
           canDelete: true,
         },
       ]}
@@ -82,6 +126,7 @@ function App() {
       Footer={Footer}
       Layout={Layout}
       OffLayoutArea={OffLayoutArea}
+      DashboardPage={DashboardPage}
     />
   );
 }
